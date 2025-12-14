@@ -246,13 +246,25 @@ function addCocktail() {
 
   cocktails.push(cocktail);
   save();
-  location.reload();
+  render();
+  clearForm();
 }
 
 function deleteCocktail(i) {
   cocktails.splice(i,1);
   save();
   render();
+}
+
+function clearForm() {
+  name.value = "";
+  instructions.value = "";
+  type.value = "Alkoholisch";
+  color.value = "";
+  currentRating = 0;
+  document.getElementById("ingredients").innerHTML = "";
+  addIngredient();
+  updateStars();
 }
 
 function render() {
@@ -286,9 +298,10 @@ function render() {
   });
 }
 
-addIngredient();
-initStars();
+// Initialisierung
 render();
+initStars();
+if(document.getElementById("ingredients").children.length === 0) addIngredient();
 </script>
 
 </body>
